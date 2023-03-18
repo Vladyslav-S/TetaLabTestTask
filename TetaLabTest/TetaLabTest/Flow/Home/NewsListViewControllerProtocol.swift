@@ -1,5 +1,5 @@
 //
-//  FilmListViewController.swift
+//  NewsListViewControllerProtocol.swift
 //  TetaLabTest
 //
 //  Created by MACsimus on 16.03.2023.
@@ -8,19 +8,19 @@
 import UIKit
 import SnapKit
 
-protocol FilmListViewControllerProtocol: AnyObject {
+protocol NewsListViewControllerProtocol: AnyObject {
     func reloadTableData()
 }
 
-class FilmListViewController: UIViewController {
+class NewsListViewController: UIViewController {
 
     // MARK: - UI Elements
 
-    private lazy var filmsTableView: UITableView = {
+    private lazy var newsTableView: UITableView = {
         let tableView = UITableView()
+        tableView.register(cell: NewsTableViewCell.self)
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .singleLine
-
         tableView.delegate = self
         tableView.dataSource = self
         return tableView
@@ -38,7 +38,7 @@ class FilmListViewController: UIViewController {
     }
 
     func setupNavigationBar() {
-        navigationItem.title = "Films"
+        navigationItem.title = "News"
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -47,9 +47,9 @@ class FilmListViewController: UIViewController {
     }
 
     private func setupTableView() {
-        view.addSubview(filmsTableView)
+        view.addSubview(newsTableView)
 
-        filmsTableView.snp.makeConstraints { make in
+        newsTableView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.left.right.bottom.equalToSuperview()
         }
@@ -57,30 +57,36 @@ class FilmListViewController: UIViewController {
 
     func reloadTableData() {
         DispatchQueue.main.async {
-            self.filmsTableView.reloadData()
+            self.newsTableView.reloadData()
         }
     }
 }
 
 // MARK: - UITableViewDataSource
 
-extension FilmListViewController: UITableViewDataSource {
+extension NewsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.reuseID, for: indexPath) as? NewsTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.setup(with: "String text")
         return UITableViewCell()
     }
-
 }
 
 // MARK: - UITableViewDelegate
 
-extension FilmListViewController: UITableViewDelegate {
+extension NewsListViewController: UITableViewDelegate {
 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
 }
 
-extension FilmListViewController: UISearchBarDelegate {
+extension NewsListViewController: UISearchBarDelegate {
 
 }
