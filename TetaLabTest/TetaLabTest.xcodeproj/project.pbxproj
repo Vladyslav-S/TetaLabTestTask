@@ -9,23 +9,24 @@
 /* Begin PBXBuildFile section */
 		0019746829C359DA00BE459E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0019746729C359DA00BE459E /* AppDelegate.swift */; };
 		0019746A29C359DA00BE459E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0019746929C359DA00BE459E /* SceneDelegate.swift */; };
-		0019746C29C359DA00BE459E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0019746B29C359DA00BE459E /* ViewController.swift */; };
-		0019746F29C359DA00BE459E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0019746D29C359DA00BE459E /* Main.storyboard */; };
+		0019746C29C359DA00BE459E /* FilmListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0019746B29C359DA00BE459E /* FilmListViewController.swift */; };
 		0019747229C359DA00BE459E /* TetaLabTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0019747029C359DA00BE459E /* TetaLabTest.xcdatamodeld */; };
 		0019747429C359DD00BE459E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0019747329C359DD00BE459E /* Assets.xcassets */; };
 		0019747729C359DD00BE459E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0019747529C359DD00BE459E /* LaunchScreen.storyboard */; };
+		00A90C9429C5500F00878FED /* UIWindow+RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A90C9329C5500F00878FED /* UIWindow+RootController.swift */; };
+		00AAA74529C55B5900A376D2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 00AAA74429C55B5900A376D2 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0019746429C359DA00BE459E /* TetaLabTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TetaLabTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0019746729C359DA00BE459E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0019746929C359DA00BE459E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0019746B29C359DA00BE459E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		0019746E29C359DA00BE459E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0019746B29C359DA00BE459E /* FilmListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmListViewController.swift; sourceTree = "<group>"; };
 		0019747129C359DA00BE459E /* TetaLabTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TetaLabTest.xcdatamodel; sourceTree = "<group>"; };
 		0019747329C359DD00BE459E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0019747629C359DD00BE459E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0019747829C359DD00BE459E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00A90C9329C5500F00878FED /* UIWindow+RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+RootController.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00AAA74529C55B5900A376D2 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,8 +62,8 @@
 			children = (
 				0019746729C359DA00BE459E /* AppDelegate.swift */,
 				0019746929C359DA00BE459E /* SceneDelegate.swift */,
-				0019746B29C359DA00BE459E /* ViewController.swift */,
-				0019746D29C359DA00BE459E /* Main.storyboard */,
+				00A90C9329C5500F00878FED /* UIWindow+RootController.swift */,
+				0019746B29C359DA00BE459E /* FilmListViewController.swift */,
 				0019747329C359DD00BE459E /* Assets.xcassets */,
 				0019747529C359DD00BE459E /* LaunchScreen.storyboard */,
 				0019747829C359DD00BE459E /* Info.plist */,
@@ -86,6 +88,9 @@
 			dependencies = (
 			);
 			name = TetaLabTest;
+			packageProductDependencies = (
+				00AAA74429C55B5900A376D2 /* SnapKit */,
+			);
 			productName = TetaLabTest;
 			productReference = 0019746429C359DA00BE459E /* TetaLabTest.app */;
 			productType = "com.apple.product-type.application";
@@ -114,6 +119,9 @@
 				Base,
 			);
 			mainGroup = 0019745B29C359DA00BE459E;
+			packageReferences = (
+				00AAA74329C55B5900A376D2 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 0019746529C359DA00BE459E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -130,7 +138,6 @@
 			files = (
 				0019747729C359DD00BE459E /* LaunchScreen.storyboard in Resources */,
 				0019747429C359DD00BE459E /* Assets.xcassets in Resources */,
-				0019746F29C359DA00BE459E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,9 +148,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0019746C29C359DA00BE459E /* ViewController.swift in Sources */,
+				0019746C29C359DA00BE459E /* FilmListViewController.swift in Sources */,
 				0019747229C359DA00BE459E /* TetaLabTest.xcdatamodeld in Sources */,
 				0019746829C359DA00BE459E /* AppDelegate.swift in Sources */,
+				00A90C9429C5500F00878FED /* UIWindow+RootController.swift in Sources */,
 				0019746A29C359DA00BE459E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,14 +159,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		0019746D29C359DA00BE459E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0019746E29C359DA00BE459E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		0019747529C359DD00BE459E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -296,9 +296,9 @@
 				INFOPLIST_FILE = TetaLabTest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -306,9 +306,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.VladyslavSavonik.TetaLabTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -324,9 +327,9 @@
 				INFOPLIST_FILE = TetaLabTest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -334,9 +337,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.VladyslavSavonik.TetaLabTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -362,6 +368,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		00AAA74329C55B5900A376D2 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		00AAA74429C55B5900A376D2 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00AAA74329C55B5900A376D2 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		0019747029C359DA00BE459E /* TetaLabTest.xcdatamodeld */ = {
