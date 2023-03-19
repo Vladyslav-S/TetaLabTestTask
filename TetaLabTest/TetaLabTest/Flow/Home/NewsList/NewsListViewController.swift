@@ -41,7 +41,6 @@ class NewsListViewController: UIViewController, NewsListViewControllerProtocol {
     }
 
     func setupNavigationBar() {
-        navigationItem.title = "News"
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
