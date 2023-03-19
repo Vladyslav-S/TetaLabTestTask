@@ -1,5 +1,5 @@
 //
-//  NewsListViewControllerProtocol.swift
+//  NewsListViewController.swift
 //  TetaLabTest
 //
 //  Created by MACsimus on 16.03.2023.
@@ -10,9 +10,11 @@ import SnapKit
 
 protocol NewsListViewControllerProtocol: AnyObject {
     func reloadTableData()
+//    func setup(with data: GeneralNewsModel)
 }
 
-class NewsListViewController: UIViewController {
+class NewsListViewController: UIViewController, NewsListViewControllerProtocol {
+    private let presenter = NewsListPresenter()
 
     // MARK: - UI Elements
 
@@ -33,7 +35,8 @@ class NewsListViewController: UIViewController {
         view.backgroundColor = .white
         setupTableView()
         setupNavigationBar()
-        
+
+        presenter.controller = self
         // Do any additional setup after loading the view.
     }
 
@@ -76,6 +79,10 @@ extension NewsListViewController: UITableViewDataSource {
         cell.setup(with: "String text")
         return UITableViewCell()
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.fetchNews()
+    }
 }
 
 // MARK: - UITableViewDelegate
@@ -85,6 +92,7 @@ extension NewsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
+
 }
 
 extension NewsListViewController: UISearchBarDelegate {
