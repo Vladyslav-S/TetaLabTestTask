@@ -30,15 +30,6 @@ extension RequestBuilderProtocol {
             urlRequest.addValue("application/json", forHTTPHeaderField: "content-type")
         case .empty:
             break
-//        case .secure:
-//            let tokenData = try KeychainService.readPassword(
-//                service: Localizable.Keychain.auth0Service,
-//                account: Localizable.Keychain.auth0AccessTokenAccount
-//            )
-//            let token = String(decoding: tokenData, as: UTF8.self)
-//            urlRequest.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-//            urlRequest.addValue("application/json", forHTTPHeaderField: "content-type")
-//        case .secureMultipartFormData: break
         }
 
         if let body = body {
@@ -52,33 +43,33 @@ extension RequestBuilderProtocol {
         return urlRequest
     }
 
-    func getUploadRequest() throws -> (request: URLRequest, data: Data?) {
-        let url = try url.getURL()
-        var urlRequest = URLRequest(url: url)
-        let boundary = UUID().uuidString
-        urlRequest.httpMethod = httpMethod.value
-
-        switch header {
-        case .standard, .empty: break
-        }
-
-        if let body = body {
-            do {
-                let data = try body.encodeData()
-                urlRequest.httpBody = data
-            } catch {
-                throw NetworkError.RequestConstruction.addingBodyFailed
-            }
-        }
-        var data: Data?
-        if let uploadData = uploadData {
-            data = Data()
-            data?.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
-            data?.append("Content-Disposition: form-data; filename=\"\(UUID().uuidString + "." + fileExt)\"\r\n".data(using: .utf8)!)
-            data?.append("Content-Type: \(fileContentType)\r\n\r\n".data(using: .utf8)!)
-            data?.append(uploadData)
-            data?.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
-        }
-        return (urlRequest, data)
-    }
+//    func getUploadRequest() throws -> (request: URLRequest, data: Data?) {
+//        let url = try url.getURL()
+//        var urlRequest = URLRequest(url: url)
+//        let boundary = UUID().uuidString
+//        urlRequest.httpMethod = httpMethod.value
+//
+//        switch header {
+//        case .standard, .empty: break
+//        }
+//
+//        if let body = body {
+//            do {
+//                let data = try body.encodeData()
+//                urlRequest.httpBody = data
+//            } catch {
+//                throw NetworkError.RequestConstruction.addingBodyFailed
+//            }
+//        }
+//        var data: Data?
+//        if let uploadData = uploadData {
+//            data = Data()
+//            data?.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+//            data?.append("Content-Disposition: form-data; filename=\"\(UUID().uuidString + "." + fileExt)\"\r\n".data(using: .utf8)!)
+//            data?.append("Content-Type: \(fileContentType)\r\n\r\n".data(using: .utf8)!)
+//            data?.append(uploadData)
+//            data?.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+//        }
+//        return (urlRequest, data)
+//    }
 }

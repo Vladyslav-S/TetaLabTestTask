@@ -7,13 +7,13 @@
 
 import Foundation
 
-enum ServerEnvironment {
+enum ServerHost {
     case news
 
     var value: String {
         switch self {
         case .news:
-            return "//newsapi.org/v2/top-headlines"
+            return "newsapi.org"
         }
     }
 }

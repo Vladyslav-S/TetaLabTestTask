@@ -9,13 +9,14 @@ import Foundation
 import Combine
 
 protocol NewsNetworkServiceProtocol {
-    func getAllNews() throws -> AnyPublisher<GeneralNewsViewModel, Error>
+    func getAllNews(country: String, apiKey: String) throws -> AnyPublisher<GeneralNewsViewModel, Error>
 }
 
 class NewsNetworkService: NetworkServiceProtocol, NewsNetworkServiceProtocol {
-    func getAllNews() throws -> AnyPublisher<GeneralNewsViewModel, Error> {
+    func getAllNews(country: String, apiKey: String) throws -> AnyPublisher<GeneralNewsViewModel, Error> {
         let getAllNewsRequest = try RequestCreator(
-            url: NewsURLs.ukrainianNews,
+            url: NewsURLs.topHeadlines(country: "ua",
+                                       apiKey: Localizable.Network.apiKey),
             httpMethod: .get,
             header: .standard
         ).getRequest()

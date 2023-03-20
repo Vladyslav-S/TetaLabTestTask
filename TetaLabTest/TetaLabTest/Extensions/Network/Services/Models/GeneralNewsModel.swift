@@ -7,28 +7,22 @@
 
 import Foundation
 
-struct GeneralNewsModel {
-    let status: String
-    let totalResults: Int
-    let articles: [GeneralNewsViewModel]
-}
-
 struct GeneralNewsViewModel: Decodable {
     let status: String
     let totalResults: Int
-    let articles: [GeneralNewsViewModel]
+    let articles: [NewsViewModel]
 }
 
 struct NewsViewModel: Decodable {
-    let source: [Source]
+    let source: Source
 
     let author: String
     let title: String
-    let description: String
+    let description: String?
     let url: String
-    let urlToImage: String
+    let urlToImage: String?
     let publishedAt: String
-    let content: String
+    let content: String?
 
 }
 
@@ -37,18 +31,23 @@ struct Source: Decodable {
     let name: String
 }
 
-extension GeneralNewsModel {
-    init(viewModel: GeneralNewsViewModel) {
-        self.init(
-            status: viewModel.status,
-            totalResults: viewModel.totalResults,
-            articles: viewModel.articles ?? [])
-    }
+extension Source {
+    static let empty: Self = .init(id: "", name: "")
 }
 
-extension GeneralNewsModel {
-    static let empty: Self = .init(
-        status: "Empty status",
-        totalResults: 0,
-        articles: [])
+extension NewsViewModel {
+    static let empty: Self = .init(source: Source.empty,
+                                   author: "",
+                                   title: "",
+                                   description: "",
+                                   url: "",
+                                   urlToImage: "",
+                                   publishedAt: "",
+                                   content: "")
+}
+
+extension GeneralNewsViewModel {
+    static let empty: Self = .init(status: "",
+                                   totalResults: 0,
+                                   articles: [])
 }

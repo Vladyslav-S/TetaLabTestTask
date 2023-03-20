@@ -72,10 +72,10 @@ class NewsTableViewCell: UITableViewCell {
 
     // MARK: - Methods
 
-    func setup(with data: String) {
-        newsTitle.text = data
-        newsSource.text = data
-        newsInformation.text = data
+    func setup(with data: NewsViewModel) {
+        newsTitle.text = data.title
+        newsSource.text = data.source.name
+        newsInformation.text = data.description
        }
 
     // MARK: - Methods

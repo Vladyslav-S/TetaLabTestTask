@@ -9,4 +9,5 @@ import Foundation
 
 struct NewsQuery: Encodable {
     var country: String
+    var apiKey: String
 }

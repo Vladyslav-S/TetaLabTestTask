@@ -10,5 +10,4 @@ import Foundation
 enum HeaderType: Equatable {
     case empty
     case standard
-//    case secure
 }

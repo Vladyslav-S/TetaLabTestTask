@@ -10,7 +10,6 @@ import SnapKit
 
 protocol NewsListViewControllerProtocol: AnyObject {
     func reloadTableData()
-//    func setup(with data: GeneralNewsModel)
 }
 
 class NewsListViewController: UIViewController, NewsListViewControllerProtocol {
@@ -35,9 +34,9 @@ class NewsListViewController: UIViewController, NewsListViewControllerProtocol {
         view.backgroundColor = .white
         setupTableView()
         setupNavigationBar()
-
         presenter.controller = self
-        // Do any additional setup after loading the view.
+        
+        presenter.fetchNews()
     }
 
     func setupNavigationBar() {
@@ -62,25 +61,33 @@ class NewsListViewController: UIViewController, NewsListViewControllerProtocol {
             self.newsTableView.reloadData()
         }
     }
+
+    private func presentNewsWebViewController(with url: String) {
+        let viewController = NewsWebViewController()
+        viewController.presenter.set(url: url)
+        navigationController?.modalPresentationStyle = .fullScreen
+        self.navigationController?.present(viewController, animated: true)
+    }
 }
 
 // MARK: - UITableViewDataSource
 
 extension NewsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return presenter.newsCount
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.reuseID, for: indexPath) as? NewsTableViewCell else {
             return UITableViewCell()
         }
-        cell.setup(with: "String text")
+        cell.setup(with: presenter.getViewModel(for: indexPath))
         return UITableViewCell()
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter.fetchNews()
+        let viewModel = presenter.getViewModel(for: indexPath)
+        presentNewsWebViewController(with: viewModel.url)
     }
 }
 

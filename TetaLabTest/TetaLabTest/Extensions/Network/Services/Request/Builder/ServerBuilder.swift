@@ -9,11 +9,11 @@ import Foundation
 
 protocol ServerBuilderProtocol {
     var scheme: ServerScheme { get }
-    var host: ServerEnvironment { get }
+    var host: ServerHost { get }
 }
 
 struct ServerBuilder: ServerBuilderProtocol {
-    var environment: ServerEnvironment
+    var environment: ServerHost
 
     var scheme: ServerScheme {
         switch environment {
@@ -22,14 +22,14 @@ struct ServerBuilder: ServerBuilderProtocol {
         }
     }
 
-    var host: ServerEnvironment {
+    var host: ServerHost {
         switch environment {
         case .news:
             return .news
         }
     }
 
-    init(environment: ServerEnvironment) {
+    init(environment: ServerHost) {
         self.environment = environment
     }
 }

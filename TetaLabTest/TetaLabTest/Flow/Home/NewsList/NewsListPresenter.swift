@@ -10,23 +10,26 @@ import Combine
 
 class NewsListPresenter {
     private let newsNetworkService = NewsNetworkService()
-    private var generalNewsData = GeneralNewsModel.empty
-    private var viewModel: [GeneralNewsModel] = []
+    private var newsData = NewsViewModel.empty
+    private var viewModel = GeneralNewsViewModel.empty
     private var cancellableSet: Set<AnyCancellable> = []
     weak var controller: NewsListViewControllerProtocol?
 
+    var newsCount: Int {
+        return viewModel.articles.count
+    }
 
-    func getViewModel(for index: IndexPath) -> GeneralNewsModel {
-        guard index.isInRange(of: viewModel.count) else {
-            return GeneralNewsModel.empty
+    func getViewModel(for index: IndexPath) -> NewsViewModel {
+        guard index.isInRange(of: viewModel.articles.count) else {
+            return NewsViewModel.empty
         }
-        return viewModel[index.row]
+        return viewModel.articles[index.row]
     }
 
     func fetchNews() {
         do {
             try newsNetworkService
-                .getAllNews()
+                .getAllNews(country: "ua", apiKey: Localizable.Network.apiKey)
                 .sink(receiveCompletion: { error in
                     if case .failure = error {
                         print(error)
@@ -39,17 +42,11 @@ class NewsListPresenter {
                 .store(in: &cancellableSet)
         } catch {
             print("failed to load news afte storing it")
-//            controller?.present(alert: .failedToLoadProfile)
         }
     }
 
-    private func appendToViewModel(_ data: GeneralNewsViewModel) {
-        let convertedNews = GeneralNewsModel(viewModel: data)
-        viewModel.append(convertedNews)
-    }
-
     private func handleReceivedNews(value: GeneralNewsViewModel) {
-        appendToViewModel(value)
+        viewModel = value
         controller?.reloadTableData()
     }
 }

@@ -26,9 +26,9 @@ struct NetworkError {
         case badServerResponse
     }
 
-    enum UploadTask: Error {
-        case noResponse
-        case respondedWithNoData
-        case badServerResponse(statusCode: Int)
-    }
+//    enum UploadTask: Error {
+//        case noResponse
+//        case respondedWithNoData
+//        case badServerResponse(statusCode: Int)
+//    }
 }
