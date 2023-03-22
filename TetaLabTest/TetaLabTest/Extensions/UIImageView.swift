@@ -17,4 +17,19 @@ extension UIImageView {
             image = UIImage(data: avatarData)!
         }
     }
+
+    func loadFrom(URLAddress: String) {
+        guard let url = URL(string: URLAddress) else {
+            return
+        }
+        guard let imageData = try? Data(contentsOf: url) else {
+            return
+        }
+        guard let loadedImage = UIImage(data: imageData) else {
+            return
+        }
+        DispatchQueue.main.async { [weak self] in
+            self?.image = loadedImage
+        }
+    }
 }

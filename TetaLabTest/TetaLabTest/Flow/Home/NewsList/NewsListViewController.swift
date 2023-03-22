@@ -35,7 +35,6 @@ class NewsListViewController: UIViewController, NewsListViewControllerProtocol {
         setupTableView()
         setupNavigationBar()
         presenter.controller = self
-        
         presenter.fetchNews()
     }
 
@@ -82,7 +81,7 @@ extension NewsListViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         cell.setup(with: presenter.getViewModel(for: indexPath))
-        return UITableViewCell()
+        return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -99,8 +98,31 @@ extension NewsListViewController: UITableViewDelegate {
         return 100
     }
 
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .normal, title: "Save") { [weak self] (action, view, completionHandler) in
+            guard let data = self?.presenter.getViewModel(for: indexPath) else { return }
+            self?.presenter.createItem(url: data.url,
+                                       newsTitle: data.title,
+                                       imageUrl: data.urlToImage ?? "",
+                                       newsResource: data.source.name,
+                                       newsDescription: data.description ?? "")
+
+            self?.presenter.controller?.present(alert: .saved)
+            completionHandler(true)
+        }
+        action.backgroundColor = .systemBlue
+        return UISwipeActionsConfiguration(actions: [action])
+    }
 }
 
-extension NewsListViewController: UISearchBarDelegate {
+// MARK: - SearchBar
 
+extension NewsListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        presenter.searchNews(name: searchText)
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        presenter.fetchNews()
+    }
 }

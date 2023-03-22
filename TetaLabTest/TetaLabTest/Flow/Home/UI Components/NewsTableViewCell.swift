@@ -16,7 +16,7 @@ class NewsTableViewCell: UITableViewCell {
         let view = UIView()
         view.defaultViewRoundedStyle()
         view.backgroundColor = .white
-        view.apply(shadow: .basic)
+        view.apply(shadow: .blue)
         return view
     }()
 
@@ -26,7 +26,7 @@ class NewsTableViewCell: UITableViewCell {
         return view
     }()
 
-    private lazy var profileImageView: UIImageView = {
+    private lazy var newsImageView: UIImageView = {
         let img = UIImageView()
         img.set(image: .defaultPhoto)
         img.contentMode = .scaleAspectFill
@@ -76,6 +76,15 @@ class NewsTableViewCell: UITableViewCell {
         newsTitle.text = data.title
         newsSource.text = data.source.name
         newsInformation.text = data.description
+        newsImageView.loadFrom(URLAddress: data.urlToImage ?? "")
+       }
+    
+    func setup(with data: NewsListItem) {
+        newsTitle.text = data.newsTitle
+        newsSource.text = data.newsResource
+        newsInformation.text = data.newsDescription
+        newsImageView.loadFrom(URLAddress: data.imageUrl ?? "")
+
        }
 
     // MARK: - Methods
@@ -91,20 +100,20 @@ class NewsTableViewCell: UITableViewCell {
 //            make.height.equalTo(150)
         }
 
-        containerView.addSubview(profileImageView)
+        containerView.addSubview(newsImageView)
         containerView.addSubview(textFieldsView)
 
-        profileImageView.snp.makeConstraints { make in
+        newsImageView.snp.makeConstraints { make in
             make.centerY.equalTo(containerView)
             make.leading.equalTo(containerView).offset(10)
             make.top.equalTo(containerView).offset(10)
             make.bottom.equalTo(containerView).inset(10)
-            make.width.equalTo(profileImageView.snp.height)
+            make.width.equalTo(newsImageView.snp.height)
         }
 
         textFieldsView.snp.makeConstraints { make in
             make.top.equalTo(containerView).offset(10)
-            make.leading.equalTo(profileImageView.snp.trailing).offset(16)
+            make.leading.equalTo(newsImageView.snp.trailing).offset(16)
             make.trailing.equalTo(containerView).offset(5)
             make.bottom.equalTo(containerView.snp.bottom).inset(10)
         }
